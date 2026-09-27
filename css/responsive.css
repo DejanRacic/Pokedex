@@ -16,7 +16,6 @@
   .card-heading { gap: 9px; padding: 0 10px; }
   .card-heading strong, .card-heading b { font-size: 1rem; }
   .dialog-hero { height: 190px; }
-  .dialog-hero img { width: 185px; height: 185px; }
   .dialog-heading { padding: 20px 70px 14px 20px; }
   .evolution-chain { flex-wrap: wrap; gap: 8px; padding: 24px 10px; }
   .evolution-step { min-width: 90px; }

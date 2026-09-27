@@ -9,7 +9,7 @@
 .dialog-heading h2 { margin: 5px 0 0; font-size: clamp(1.6rem, 4vw, 2.25rem); line-height: 1; }
 .dialog-hero { position: relative; display: grid; height: 200px; place-items: center; overflow: hidden; background: var(--card-color); }
 .dialog-hero::after { content: ""; position: absolute; width: 175px; height: 175px; border: 25px solid rgba(255,255,255,.1); border-radius: 50%; }
-.dialog-hero img { z-index: 1; display: block; width: auto; height: auto; max-width: 82%; max-height: 82%; object-fit: contain; filter: drop-shadow(0 17px 12px rgba(0,0,0,.28)); }
+.dialog-hero img { position: absolute; inset: 16px; z-index: 1; display: block; width: calc(100% - 32px); height: calc(100% - 32px); object-fit: contain; object-position: center; filter: drop-shadow(0 17px 12px rgba(0,0,0,.28)); }
 .dialog-type-icons { position: relative; display: flex; min-height: 48px; align-items: center; justify-content: center; gap: 10px; background: #06242c; }
 .stat { display: grid; grid-template-columns: 100px 42px 1fr; align-items: center; gap: 9px; margin: 8px 0; font-size: 1rem; }
 .stat i { height: 7px; overflow: hidden; border-radius: 99px; background: #e9ebf1; }
