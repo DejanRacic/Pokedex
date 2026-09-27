@@ -1,29 +1,17 @@
-function formatName(name) {
-  return name.split("-").map(part => part[0].toUpperCase() + part.slice(1)).join(" ");
-}
-
-function getArtwork(pokemon) {
-  return pokemon.sprites.other["official-artwork"].front_default || pokemon.sprites.front_default;
-}
-
 function getCardTemplate(pokemon) {
-  const mainType = pokemon.types[0].type.name;
-  return `<li>${getCardButton(pokemon, mainType)}</li>`;
+  return `<li>${getCardButton(pokemon)}</li>`;
 }
 
-function getCardButton(pokemon, mainType) {
-  const typeIcons = pokemon.types.map(item => getTypeIconTemplate(item.type.name)).join("");
-  return `<button class="pokemon-card type-${mainType}" data-id="card" data-pokemon-id="${pokemon.id}" aria-label="Open details for ${formatName(pokemon.name)}">
+function getCardButton(pokemon) {
+  return `<button class="pokemon-card type-${pokemon.types[0].type.name}" data-id="card" data-pokemon-id="${pokemon.id}" aria-label="Open details for ${formatName(pokemon.name)}">
     <span class="card-heading"><b>#${pokemon.id}</b><strong>${formatName(pokemon.name)}</strong></span>
     <span class="card-art"><img data-id="card-image" src="${getArtwork(pokemon)}" alt="${formatName(pokemon.name)}" loading="lazy" width="190" height="190"></span>
-    <span class="card-types">${typeIcons}</span>
+    <span class="card-types">${pokemon.types.map(item => getTypeIconTemplate(item.type.name)).join("")}</span>
   </button>`;
 }
 
 function getTypeIconTemplate(type) {
-  const label = `${formatName(type)} type`;
-  const data = POKEMON_TYPE_DATA[type];
-  return `<span class="type-icon" style="--icon-color:${data.color}" title="${label}" aria-label="${label}">${data.icon}</span>`;
+  return `<span class="type-icon" style="--icon-color:${POKEMON_TYPE_DATA[type].color}" title="${formatName(type)} type" aria-label="${formatName(type)} type">${POKEMON_TYPE_DATA[type].icon}</span>`;
 }
 
 function getTypeTemplate(type) {
@@ -31,8 +19,7 @@ function getTypeTemplate(type) {
 }
 
 function getDialogTemplate(pokemon, evolutionNames) {
-  const mainType = pokemon.types[0].type.name;
-  return `<article class="dialog-card type-${mainType}" data-id="overlay-pokemon-name">
+  return `<article class="dialog-card type-${pokemon.types[0].type.name}" data-id="overlay-pokemon-name">
     ${getDialogHeader(pokemon)}${getDialogHero(pokemon)}${getDialogTabs()}${getDialogPanels(pokemon, evolutionNames)}${getDialogNavigation(pokemon)}
   </article>`;
 }
@@ -44,9 +31,8 @@ function getDialogHeader(pokemon) {
 }
 
 function getDialogHero(pokemon) {
-  const icons = pokemon.types.map(item => getTypeIconTemplate(item.type.name)).join("");
   return `<div class="dialog-hero"><img data-id="dialog-image" src="${getArtwork(pokemon)}" alt="${formatName(pokemon.name)}" width="300" height="300"></div>
-    <div class="dialog-type-icons">${icons}</div>`;
+    <div class="dialog-type-icons">${pokemon.types.map(item => getTypeIconTemplate(item.type.name)).join("")}</div>`;
 }
 
 function getDialogTabs() {
@@ -61,10 +47,9 @@ function getDialogPanels(pokemon, evolutionNames) {
 }
 
 function getMainPanel(pokemon) {
-  const abilities = pokemon.abilities.map(item => formatName(item.ability.name)).join(", ");
   return `<section class="dialog-panel active" data-dialog-panel="main" role="tabpanel"><dl class="main-facts">
     <div><dt>Height</dt><dd>${pokemon.height / 10} m</dd></div><div><dt>Weight</dt><dd>${pokemon.weight / 10} kg</dd></div>
-    <div><dt>Base experience</dt><dd>${pokemon.base_experience ?? "-"}</dd></div><div><dt>Abilities</dt><dd>${abilities}</dd></div>
+    <div><dt>Base experience</dt><dd>${pokemon.base_experience ?? "-"}</dd></div><div><dt>Abilities</dt><dd>${pokemon.abilities.map(item => formatName(item.ability.name)).join(", ")}</dd></div>
     <div><dt>Types</dt><dd>${pokemon.types.map(item => formatName(item.type.name)).join(", ")}</dd></div></dl></section>`;
 }
 
@@ -84,9 +69,7 @@ function getEvolutionStep(item) {
 }
 
 function getStatTemplate(item) {
-  const label = formatName(item.stat.name).replace("Special", "Sp.");
-  const width = Math.min(item.base_stat / 2, 100);
-  return `<div class="stat"><span>${label}</span><b>${item.base_stat}</b><i><em style="width:${width}%"></em></i></div>`;
+  return `<div class="stat"><span>${getStatData(item).label}</span><b>${item.base_stat}</b><i><em style="width:${getStatData(item).width}%"></em></i></div>`;
 }
 
 function getDialogNavigation(pokemon) {
@@ -96,4 +79,12 @@ function getDialogNavigation(pokemon) {
 
 function getNotFoundTemplate() {
   return `<p class="not-found" data-id="not-found">No matching Pokémon found. Try another name.</p>`;
+}
+
+function getDialogLoadingTemplate(pokemon) {
+  return `<div class="dialog-loading"><img src="assets/img/pokeball.svg" alt="" width="56" height="56"><p>Loading ${formatName(pokemon.name)}...</p></div>`;
+}
+
+function getDialogErrorTemplate() {
+  return `<div class="dialog-loading"><p>Details could not be loaded.</p></div>`;
 }

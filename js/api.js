@@ -27,6 +27,22 @@ async function getPokemonIndex() {
   return data.results;
 }
 
+function getPokemonNumber(url) {
+  return Number(url.split("/").filter(Boolean).pop());
+}
+
+function getEvolutionList(chain) {
+  const evolution = [];
+
+  function addEvolutionStep(step) {
+    evolution.push({ name: step.species.name, id: getPokemonNumber(step.species.url) });
+    step.evolves_to.forEach(addEvolutionStep);
+  }
+
+  addEvolutionStep(chain);
+  return evolution;
+}
+
 async function getSpecies(pokemon) {
   const cachedSpecies = getCachedSpecies(pokemon.id);
   if (cachedSpecies) return cachedSpecies;

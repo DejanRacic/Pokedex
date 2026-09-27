@@ -1,8 +1,8 @@
 const APP_SETTINGS = {
   apiUrl: "https://pokeapi.co/api/v2",
-  pageSize: 25,
-  maxPokemon: 25,
-  searchLimit: 25,
+  pageSize: 20,
+  maxPokemon: 151,
+  searchLimit: 40,
   minimumSearchLength: 3
 };
 
