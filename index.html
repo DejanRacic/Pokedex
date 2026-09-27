@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A responsive Pokédex powered by PokéAPI">
+  <title>Pokédex Explorer</title>
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://raw.githubusercontent.com">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/cards.css">
+  <link rel="stylesheet" href="css/dialog.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Pokédex home">
+      <img src="assets/img/pokeball.svg" alt="" width="48" height="48">
+      <span>Pokédex</span>
+    </a>
+    <form class="search" id="searchForm" role="search">
+      <label class="sr-only" for="searchInput">Search Pokémon</label>
+      <input id="searchInput" data-id="search-input" type="search" placeholder="Search Pokémon..." minlength="3" autocomplete="off">
+      <button data-id="search-button" type="submit" aria-label="Search Pokémon">Search</button>
+    </form>
+  </header>
+
+  <main data-id="content" class="content">
+    <section class="intro" aria-labelledby="pageTitle">
+      <p class="eyebrow">Gotta catch 'em all</p>
+      <h1 id="pageTitle">Discover every Pokémon</h1>
+      <p>Browse the collection, inspect stats and explore evolution chains.</p>
+    </section>
+    <div id="status" class="status" aria-live="polite"></div>
+    <ul id="pokemonList" class="pokemon-grid" aria-label="Pokémon collection"></ul>
+    <div class="load-more-wrap">
+      <button id="loadMoreButton" data-id="load-more-button" class="load-more" type="button" aria-label="Load more Pokémon">Load more Pokémon</button>
+    </div>
+  </main>
+
+  <dialog id="pokemonDialog" data-id="dialog" class="pokemon-dialog" aria-label="Pokémon details">
+    <div id="dialogContent"></div>
+  </dialog>
+
+  <div id="loader" class="loader" hidden aria-live="assertive" aria-label="Loading Pokémon">
+    <img src="assets/img/pokeball.svg" alt="" width="64" height="64">
+    <span>Loading Pokémon...</span>
+  </div>
+
+  <footer><p>Data provided by PokéAPI · Built with vanilla JavaScript</p></footer>
+  <script src="js/database.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/templates.js"></script>
+  <script src="js/global.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
