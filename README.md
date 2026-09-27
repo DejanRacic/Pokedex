@@ -4,7 +4,7 @@ A responsive vanilla JavaScript Pokédex powered by [PokéAPI](https://pokeapi.c
 
 ## Features
 
-- Loads the first 25 Pokémon
+- Loads up to 151 Pokémon in batches of 20
 - Fetch-then-render flow with in-memory caching
 - Lazy-loaded species and evolution data
 - Clickable Main, Stats and Evolution Chain tabs in the detail view
