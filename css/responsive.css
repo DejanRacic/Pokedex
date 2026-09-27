@@ -14,10 +14,10 @@
   .pokemon-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 12px; }
   .pokemon-card { grid-template-rows: 43px 170px 54px; border-radius: 8px; }
   .card-heading { gap: 9px; padding: 0 10px; }
-  .card-heading strong, .card-heading b { font-size: .78rem; }
+  .card-heading strong, .card-heading b { font-size: 1rem; }
   .dialog-hero { height: 190px; }
   .dialog-hero img { width: 185px; height: 185px; }
-  .dialog-heading { padding: 28px 24px 4px; }
+  .dialog-heading { padding: 20px 70px 14px 20px; }
   .evolution-chain { flex-wrap: wrap; gap: 8px; padding: 24px 10px; }
   .evolution-step { min-width: 90px; }
   .evolution-step img { width: 90px; height: 90px; }
@@ -31,9 +31,9 @@
   .stat { grid-template-columns: 76px 28px 1fr; gap: 6px; }
   .dialog-nav span { display: none; }
   .dialog-nav { grid-template-columns: 1fr 1fr; }
-  .dialog-tabs button { padding-inline: 3px; font-size: .75rem; }
-  .main-facts div { grid-template-columns: 115px 1fr; gap: 8px; font-size: .86rem; }
-  .stats-details .stat { grid-template-columns: 82px 28px 1fr; }
+  .dialog-tabs button { padding-inline: 3px; font-size: 1rem; }
+  .main-facts div { grid-template-columns: 115px 1fr; gap: 8px; font-size: 1rem; }
+  .stats-details .stat { grid-template-columns: 100px 36px 1fr; }
 }
 
 @media (prefers-reduced-motion: reduce) {
